@@ -6,7 +6,11 @@
     <title>Cookt</title>
     <meta
       name="description"
-      content="Cookt picks tonight’s dinner. One recipe, the steps, and a week you actually cooked."
+      content="Cookt picks today’s dinner. Same one for everyone. A new one tomorrow."
+    />
+    <meta
+      property="og:description"
+      content="Cookt picks today’s dinner. Same one for everyone. A new one tomorrow."
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
@@ -21,7 +25,24 @@
         </nav>
       </header>
 
-      <p class="kicker">tonight</p>
+      <div class="kicker-row">
+        <p class="kicker">tonight</p>
+      </div>
+      <script>
+        (function () {
+          var row = document.currentScript.previousElementSibling;
+          if (!row || !window.Intl || !Intl.DateTimeFormat) return;
+          var stamp = document.createElement("p");
+          stamp.className = "stamp";
+          stamp.textContent = new Intl.DateTimeFormat("en-US", {
+            timeZone: "America/Toronto",
+            weekday: "long",
+            month: "long",
+            day: "numeric",
+          }).format(new Date());
+          row.appendChild(stamp);
+        })();
+      </script>
       <img class="squiggle" src="squiggle.png" alt="" />
 
       <div class="plate">
@@ -37,13 +58,27 @@
         />
       </div>
 
+      <p class="lede">Everyone gets the same dinner today. A new one lands at midnight.</p>
+      <p class="lede">One step per screen. Timers run in the background.</p>
       <p class="lede">
-        Open Cookt and dinner is already chosen. Follow the steps. When you finish, the week streak moves.
+        Tonight is free. Cookt+ plans the rest of the week around one shopping list. First 7 days free, no card.
       </p>
-      <p class="lede">
-        The weekly plan adds the shopping list, the rest of this week, and the previous four weeks. The first seven days are free. Then weekly, yearly, or lifetime.
-      </p>
+      <p class="cta">Cook today’s in Cookt.</p>
       <p class="soon">Coming to the App Store.</p>
+
+      <section class="receipt">
+        <p>Monday to Saturday share groceries. Sunday stands alone.</p>
+        <p>
+          Cookt+ adds the rest of this week, the last four weeks, and one shopping list with amounts combined.
+        </p>
+        <p>$2.99 a week, $29.99 a year, or $59.99 once.</p>
+        <p>
+          The yearly price is our 2026 founding price. It goes to $39.99 on January 1, 2027. Subscribe in 2026 and keep it.
+        </p>
+        <p>Lifetime at $59.99 until December 31, 2026.</p>
+        <p>Your streak is your own goal for the week, starting at two nights.</p>
+        <p>After you cook, there’s an “I cookt tonight.” sticker for your story.</p>
+      </section>
     </div>
   </body>
 </html>
